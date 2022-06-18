@@ -16,6 +16,7 @@
 #include "file.h"
 #include "fcntl.h"
 
+int readcallscnt = 0;
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
 static int
@@ -69,6 +70,7 @@ sys_dup(void)
 int
 sys_read(void)
 {
+  readcallscnt +=1;
   struct file *f;
   int n;
   char *p;
@@ -445,6 +447,6 @@ sys_pipe(void)
 
 // Author: Ahmed Araby
 int sys_getreadcount(void){
-  return 22; // random num for now
+  return readcallscnt;
 }
 // end
