@@ -15,7 +15,6 @@
 #include "sleeplock.h"
 #include "file.h"
 #include "fcntl.h"
-#include "user.h" // for printf routine signature
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -446,11 +445,6 @@ sys_pipe(void)
 
 // Author: Ahmed Araby
 int sys_getreadcount(void){
-  
-  // 1 is the index of the std output file descriptor
-  // in file descriptors tables of a process, which process  ???!!
-  // is it the user process that made the call or is it the kernal
-  printf(1, "'getreadcount' sys routine got executed");
   return 22; // random num for now
 }
 // end
