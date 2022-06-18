@@ -442,3 +442,14 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+
+// Author: Ahmed Araby
+int getreadcount(void){
+  
+  // 1 is the index of the std output file descriptor
+  // in file descriptors tables of a process, which process  ???!!
+  // is it the user process that made the call or is it the kernal
+  printf(1, "'getreadcount' sys routine got executed");
+  return 22; // random num for now
+}
+// end
