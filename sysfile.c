@@ -444,7 +444,7 @@ sys_pipe(void)
 }
 
 // Author: Ahmed Araby
-int getreadcount(void){
+int sys_getreadcount(void){
   
   // 1 is the index of the std output file descriptor
   // in file descriptors tables of a process, which process  ???!!
