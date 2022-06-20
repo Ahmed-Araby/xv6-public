@@ -11,7 +11,6 @@
 #include "file.h"
 
 struct devsw devsw[NDEV];
-struct readcallscnt readcallscnt;
 
 struct {
   struct spinlock lock;
@@ -100,10 +99,6 @@ filestat(struct file *f, struct stat *st)
 int
 fileread(struct file *f, char *addr, int n)
 {
-  acquire(&readcallscnt.lock);
-  readcallscnt.counter +=1;
-  release(&readcallscnt.lock);
-
   int r;
 
   if(f->readable == 0)
