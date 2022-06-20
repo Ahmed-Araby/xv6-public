@@ -5,7 +5,7 @@
 //
 
 #include "types.h"
-#include "defs.h"
+#include "defs.h" // has the spinlock signature for the c compiler
 #include "param.h"
 #include "stat.h"
 #include "mmu.h"
@@ -16,7 +16,6 @@
 #include "file.h"
 #include "fcntl.h"
 
-int readcallscnt = 0;
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
 static int
@@ -69,8 +68,7 @@ sys_dup(void)
 
 int
 sys_read(void)
-{
-  readcallscnt +=1;
+{ 
   struct file *f;
   int n;
   char *p;
@@ -447,6 +445,6 @@ sys_pipe(void)
 
 // Author: Ahmed Araby
 int sys_getreadcount(void){
-  return readcallscnt;
+  return -1; // not implemented
 }
 // end
