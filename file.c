@@ -16,10 +16,12 @@ struct {
   struct file file[NFILE];
 } ftable;
 
+
 void
 fileinit(void)
 {
   initlock(&ftable.lock, "ftable");
+  initlock(&readcallscnt.lock, "readcallscnt");
 }
 
 // Allocate a file structure.
@@ -96,6 +98,10 @@ filestat(struct file *f, struct stat *st)
 int
 fileread(struct file *f, char *addr, int n)
 {
+  acquire(&readcallscnt.lock);
+  readcallscnt.counter +=1;
+  release(&readcallscnt.lock);
+
   int r;
 
   if(f->readable == 0)

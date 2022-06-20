@@ -34,4 +34,17 @@ struct devsw {
 
 extern struct devsw devsw[];
 
+/**
+ * @brief this struct hold the counter variable 
+ * that will store the number of times the fileread()
+ * get called. 
+ * also it holds the spinlock used to synchronize 
+ * the access to the counter. 
+ */
+struct readcallscnt{
+  struct spinlock lock;
+  int counter;
+};
+extern struct readcallscnt readcallscnt;
+
 #define CONSOLE 1
