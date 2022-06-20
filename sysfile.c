@@ -445,6 +445,13 @@ sys_pipe(void)
 
 // Author: Ahmed Araby
 int sys_getreadcount(void){
-  return -1; // not implemented
+  /**
+   * @brief questions for the future
+   * does accessing the value in this way, 
+   * will be safe in case there is a nother thread 
+   * which is making a call to the sys_read() routine
+   * which will cause an increment to the counter !!??
+   */
+  return readcallscnt.counter; 
 }
 // end
